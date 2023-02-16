@@ -3,6 +3,8 @@
 const computerDto = require("../../model/dto/computer.dto");
 const brandDto = require("../../model/dto/brand.dto");
 
+//** Helpers */
+const notHelper = require("../helpers/notifications.helpers");
 
 
 exports.createComputer = (req, res, next)=>{
@@ -14,7 +16,7 @@ exports.createComputer = (req, res, next)=>{
         storage: req.body.storage,
         color: req.body.color
     };
-    computerDto.save(computer,(err, data)=>{
+    computerDto.create(computer,(err, data)=>{
         if(err){
             return res.status(400).json({           // en la siguiente linea el profesor maneja estudiante video 2 min 48:59 dice que debe guardar nuevamente pero ya en el usuario
                                                     //pero no estoy muy seguro si en nuestro caso manejamos como usuario la marca o simplemente se deja en computador que es de la linea 10 a la 15
@@ -22,7 +24,6 @@ exports.createComputer = (req, res, next)=>{
             });                                     
         }
         let brand = {                           
-
             name: req.body.name,
             country: req.body.country,
             foundation: req.body.foundation,
@@ -35,6 +36,9 @@ exports.createComputer = (req, res, next)=>{
                     error: err
                 });           
             }
+
+            notHelper.sendSMS(computer.reference);
+
             res.status(201).json({
                 info: data
             })

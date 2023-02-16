@@ -1,6 +1,6 @@
 {
-    "db-connections":{
-        "mongodb" : {
+    "db-connections": {
+        "mongodb": {
             "host": "cluster0.w7gylv8.mongodb.net",
             "user": "reddoenjeru",
             "password": "CQAuEwC7vp6ifpI3",

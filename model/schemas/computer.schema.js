@@ -1,11 +1,11 @@
 /** packages computer*/
 
-const moongose = require("mongoose");
+const mongoose = require("mongoose");
 const  validator = require("mongoose-unique-validator");
 
-const Schema = moongose.Schema;
+const Schema = mongoose.Schema;
 
-const computerdSchema = new moongose.Schema({
+const computerdSchema = new mongoose.Schema({
     brand:{
         type: mongoose.Schema.Types.ObjectId,
         ref:"coll_brand",
@@ -42,5 +42,5 @@ const computerdSchema = new moongose.Schema({
 
 /** schema  exportation */
 
-teacherSchema.plugin(validator);
+computerdSchema.plugin(validator);
 module.exports = computerdSchema;
