@@ -1,11 +1,12 @@
 {
-    "db-connections": {
-        "mongodb": {
-            "host": "cluster0.w7gylv8.mongodb.net",
-            "user": "reddoenjeru",
-            "password": "CQAuEwC7vp6ifpI3",
+    "db-connections":{
+        "mongodb" : {
+            "host": "cluster0.jftlm.mongodb.net",
+            "user": "acad_rest_api_user",
+            "password": "68aaFriMNJCDPrgs",
             "dbname": "computerDB"
         }
+
     },
     "roles": {
         "brand": 1,

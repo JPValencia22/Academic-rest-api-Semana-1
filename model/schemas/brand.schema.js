@@ -8,20 +8,20 @@ const Schema = moongose.Schema;
 const brandSchema = new moongose.Schema({
   name: {
     type: "String",
-    require: true,
+    required: true,
   },
   country: {
     type: "String",
-    require: true,
+    required: true,
   },
   foundation: {
     type: "String",
-    require: true,
+    required: true,
   },
   brandsValue: {
     type: "Number",
-    require: true,
-  },
+    required: true,
+  }
 });
 
 /** schema  exportation */

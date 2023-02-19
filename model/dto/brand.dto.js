@@ -1,9 +1,11 @@
 /** packages */
 
 const mongoose = require("mongoose");
+const db = require("../dbconnection/mongodb")
 
 /** using schema */
 const schema = require("../schemas/brand.schema");
+db();
 
 schema.statics = {
   create: function (data, cb) {
@@ -13,14 +15,14 @@ schema.statics = {
   getAll: function (query, cb) {
     this.find(query, cb);
   },
-  getByBrand: function (query, cb) {
+  getByName: function (query, cb) {
     this.find(query, cb);
   },
   update: function (query, data, cb) {
     this.findOneAndUpdate(query, { $set: data }, { new: true }, cb);
   },
   delete: function (query, cb) {
-    this.findOneAndDelete(query);
+    this.findOneAndDelete(query, cb);
   },
 };
 

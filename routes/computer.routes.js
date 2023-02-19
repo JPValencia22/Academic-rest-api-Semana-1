@@ -5,13 +5,13 @@ module.exports = (app) => {
     controller.getAll(req, res, next);
   });
 
-  app.get("/computer/byreference:reference", (req, res, next) => {
-    console.log("gettins computer by reference");
-    controller.getByReference(req, res, next);
+  app.get("/computer/byid/:id", (req, res, next) => {
+    console.log("gettins computer by id");
+    controller.getById(req, res, next);
   });
 
   app.post("/computer", (req, res, next) => {
-    controller.save(req, res, next);
+    controller.createComputer(req, res, next);
   });
 
   app.put("/computer", (req, res, next) => {

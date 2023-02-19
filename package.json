@@ -12,7 +12,7 @@
     "api",
     "rest"
   ],
-  "author": "Gruop 3",
+  "author": "Group 3",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.20.1",

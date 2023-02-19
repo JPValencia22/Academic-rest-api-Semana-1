@@ -1,123 +1,89 @@
-/** Dto*/
-
+/** computerDto */
 const computerDto = require("../../model/dto/computer.dto");
-const brandDto = require("../../model/dto/brand.dto");
 
 //** Helpers */
 const notHelper = require("../helpers/notifications.helpers");
 
 exports.createComputer = (req, res, next) => {
   let computer = {
+    id: req.body.id,
     brand: req.body.brand,
-    Os: req.body.Os,
+    os: req.body.os,
     reference: req.body.reference,
     memory: req.body.memory,
     storage: req.body.storage,
     color: req.body.color,
+    generation: req.body.generation,
   };
+
   computerDto.create(computer, (err, data) => {
     if (err) {
       return res.status(400).json({
-        // en la siguiente linea el profesor maneja estudiante video 2 min 48:59 dice que debe guardar nuevamente pero ya en el usuario
-        //pero no estoy muy seguro si en nuestro caso manejamos como usuario la marca o simplemente se deja en computador que es de la linea 10 a la 15
         error: err,
       });
     }
-    let brand = {
-      name: req.body.name,
-      country: req.body.country,
-      foundation: req.body.foundation,
-      brandsValue: req.body.brandsValue,
-    };
-    brandDto.save(brand, (err, brand) => {
-      if (err) {
-        return res.status(400).json({
-          error: err,
-        });
-      }
-
-      notHelper.sendSMS(computer.reference);
-
-      res.status(201).json({
-        info: data,
-      });
+    res.status(201).json({
+      info: data,
     });
   });
 };
 
 exports.updateComputer = (req, res, next) => {
   let computer = {
+    id: req.body.id,
     brand: req.body.brand,
-    Os: req.body.Os,
+    os: req.body.os,
     reference: req.body.reference,
     memory: req.body.memory,
     storage: req.body.storage,
     color: req.body.color,
+    generation: req.body.generation,
   };
-  computerDto.updateComputer(
-    { _id: req.body.id },
-    std,
-    computer,
-    (err, data) => {
-      if (err) {
-        return res.status(400).json({
-          // en la siguiente linea el profesor maneja estudiante video 2 min 48:59 dice que debe guardar nuevamente pero ya en el usuario
-          //pero no estoy muy seguro si en nuestro caso manejamos como usuario la marca o simplemente se deja en computador que es de la linea 10 a la 15
-          error: err,
-        });
-      }
-
-      res.status(201).json({
-        info: data,
+  computerDto.update({ _brand: req.body.brand }, computer, (err, data) => {
+    if (err) {
+      return res.status(400).json({
+        error: err,
       });
     }
-  );
+    res.status(201).json({
+      info: data,
+    });
+  });
 };
 
 exports.getAll = (req, res, next) => {
   computerDto.getAll({}, (err, data) => {
     if (err) {
       return res.status(400).json({
-        // en la siguiente linea el profesor maneja estudiante video 2 min 48:59 dice que debe guardar nuevamente pero ya en el usuario
-        //pero no estoy muy seguro si en nuestro caso manejamos como usuario la marca o simplemente se deja en computador que es de la linea 10 a la 15
         error: err,
       });
     }
-
     res.status(200).json({
       info: data,
     });
   });
 };
 
-exports.getByReference = (req, res, next) => {
-  computerDto.getByReference({ reference: req.params.reference }, (err, data) => {
+exports.getById = (req, res, next) => {
+  computerDto.getById({ id: req.params.id }, (err, data) => {
     if (err) {
       return res.status(400).json({
-        // en la siguiente linea el profesor maneja estudiante video 2 min 48:59 dice que debe guardar nuevamente pero ya en el usuario
-        //pero no estoy muy seguro si en nuestro caso manejamos como usuario la marca o simplemente se deja en computador que es de la linea 10 a la 15
         error: err,
       });
     }
-
     res.status(200).json({
       info: data,
     });
   });
 };
 
-exports.deleteComputer = () => {
-  computerDto.delete({ id: req.body.id }, (err, data) => {
+exports.deleteComputer = (req, res) => {
+  computerDto.delete({ _id: req.body.id }, (err, data) => {
     if (err) {
       return res.status(400).json({
-        // en la siguiente linea el profesor maneja estudiante video 2 min 48:59 dice que debe guardar nuevamente pero ya en el usuario
-        //pero no estoy muy seguro si en nuestro caso manejamos como usuario la marca o simplemente se deja en computador que es de la linea 10 a la 15
         error: err,
       });
     }
-
-    res.status(204).json({
-      info: data,
-    });
+    res.status(204).json();
   });
 };

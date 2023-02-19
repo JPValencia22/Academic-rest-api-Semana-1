@@ -3,12 +3,12 @@ const config = require("config");
 
 const mongodbInfo = config.get("db-connections.mongodb");
 
-const connStr = `mongodb+srv://${mongodbInfo.user}:${mongodbInfo.password}@${mongodbInfo.host}/${mongodbInfo.dbname}?retryWrites=true&w=majority`;
+const connStr = `mongodb+srv://${mongodbInfo.user}:${mongodbInfo.password}@${mongodbInfo.host}/${mongodbInfo.dbname}`;
 
 module.exports = () => {
   mongoose.connect(connStr);
 
-  mongoose.connection.on("conected", () => {
+  mongoose.connection.on("connected", () => {
     console.log("mongodb server connected!");
   });
 

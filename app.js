@@ -4,6 +4,7 @@ const config = require("config");
 const bodyParser = require("body-parser");
 
 /** app configuration */
+
 const app = express();
 const port = config.get("Server-port");
 const jsonParser = bodyParser.json();
